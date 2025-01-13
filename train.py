@@ -109,7 +109,7 @@ def run_validation(
             )
 
             source_text = batch["src_text"][0]
-            target_text = batch["tgt_text"][0]
+            target_text = batch["target_text"][0]
             model_out_text = tokenizer_tgt.decode(model_out.detach().cpu().numpy())
 
             source_texts.append(source_text)

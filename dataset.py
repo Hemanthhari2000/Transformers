@@ -32,11 +32,11 @@ class BilingualDataset(Dataset):
     def __getitem__(self, idx):
         src_target_pair = self.ds[idx]
         src_text = src_target_pair["translation"][self.src_lang]
-        target_lang = src_target_pair["translation"][self.target_lang]
+        target_text = src_target_pair["translation"][self.target_lang]
 
         # Transform the text into tokens
         enc_input_tokens = self.tokenizer_src.encode(src_text).ids
-        dec_input_tokens = self.tokenizer_target.encode(target_lang).ids
+        dec_input_tokens = self.tokenizer_target.encode(target_text).ids
 
         # Add sos, eos and padding to each sentence
         enc_num_padding_tokens = (
@@ -104,7 +104,7 @@ class BilingualDataset(Dataset):
             ),  # (1, seq_len) & (1, seq_len, seq_len),
             "label": label,  # (seq_len)
             "src_text": src_text,
-            "target_lang": target_lang,
+            "target_text": target_text,
         }
 
 
